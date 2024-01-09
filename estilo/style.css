@@ -53,6 +53,16 @@ header > p {
     padding-bottom: 10px;
 }
 
+header a {
+    text-decoration: none;
+    color: var(--color2);
+    font-weight: bold;
+}
+
+header a:hover {
+    text-decoration: underline;
+}
+
 nav {
     background-color: #f5d16650;
     padding: 10px;

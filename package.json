@@ -1,0 +1,25 @@
+{
+  "name": "onepiece",
+  "version": "1.0.0",
+  "description": "Um site que criei sobre One Piece para treinar HTML, CSS, JS, Node.js e Express",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielamota47/onepiece.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/danielamota47/onepiece/issues"
+  },
+  "homepage": "https://github.com/danielamota47/onepiece#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

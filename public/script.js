@@ -16,10 +16,16 @@ async function mostrarPesquisa() {
 
     const fruta = dados[0];
     resultadoDaPesquisa.innerHTML = `
-        <h3>${fruta.nome}</h3>
-        <p><strong>Tipo:</strong> ${fruta.tipo}</p>
-        <p><strong>Utilizador:</strong> ${fruta.utilizador}</p>
-        <p>${fruta.descricao}</p>
-        <img src="imagens/${fruta.imagem}" width="250">
-    `;
+        <div class="akumaResultado">
+            <div class="infoAkuma">
+                <h3>${fruta.nome}</h3>
+                <p><strong>Tipo:</strong> ${fruta.tipo}</p>
+                <p><strong>Utilizador:</strong> ${fruta.utilizador}</p>
+                <p>${fruta.descricao}</p>
+            </div>
+
+            <div class="imgs">
+                <img src="imagens/${fruta.imagem}" alt="${fruta.nome}">
+            </div>
+        </div>`;
 }

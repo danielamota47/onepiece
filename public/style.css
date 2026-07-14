@@ -176,6 +176,36 @@ main div.video {
     background-color: var(--color3);
 }
 
+#resultadoPesquisa {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+#resultadoPesquisa .akumaResultado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+
+    width: 700px;
+    margin: 30px auto;
+    padding: 20px;
+
+    border: 2px solid #333;
+    border-radius: 15px;
+    background-color: #f8f8f8;
+}
+
+#resultadoPesquisa .infoAkuma {
+    flex: 1;
+}
+
+#resultadoPesquisa .imgs img{
+    width: 250px;
+    border-radius: 10px;
+}
+
 aside {
     background-image: url(imagens/wallpapper.png);
     background-size: contain;

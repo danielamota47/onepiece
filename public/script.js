@@ -1,6 +1,6 @@
-const barraDePesquisa = document.getElementById("barraPesquisa");
-const botaoDePesquisar = document.getElementById("botaoPesquisar");
-const resultadoDaPesquisa = document.getElementById("resultadoPesquisa");
+const barraDePesquisa = document.querySelector(".barraPesquisa");
+const botaoDePesquisar = document.querySelector(".botaoPesquisar");
+const resultadoDaPesquisa = document.querySelector(".resultadoPesquisa");
 
 botaoDePesquisar.addEventListener("click", mostrarPesquisa);
 

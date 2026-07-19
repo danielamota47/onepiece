@@ -192,9 +192,9 @@ main div.video {
     margin: 30px auto;
     padding: 20px;
 
-    border: 2px solid #333;
+    border: 2px solid #bd9c9c;
     border-radius: 15px;
-    background-color: #f8f8f8;
+    background-color: white;
 }
 
 .resultadoPesquisa .infoAkuma {
@@ -202,7 +202,7 @@ main div.video {
 }
 
 .resultadoPesquisa .imgs img{
-    width: 250px;
+    width: 280px;
     border-radius: 10px;
 }
 

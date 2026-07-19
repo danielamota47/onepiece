@@ -6,7 +6,7 @@ botaoDePesquisar.addEventListener("click", mostrarPesquisa);
 
 async function mostrarPesquisa() {
 
-    const texto = barraDePesquisa.value;
+    const texto = barraDePesquisa.value.trim().toLowerCase();
     const resposta = await fetch(`/api/akumas/${texto}`);
     const dados = await resposta.json();
     if(dados.length === 0){

@@ -15,27 +15,22 @@ const db = mysql.createConnection({
 });
 
 db.connect((err) => {
-    if(err){
+    if (err) {
         console.log(err);
         return;
     }
+
     console.log("Ligado ao MySQL.");
 });
 
+//importar as rotas
+const akumasRoutes = require("./routes/akumas")(db);
+const personagensRoutes = require("./routes/personagens")(db);
+
+//usar as rotas
+app.use("/api/akumas", akumasRoutes);
+app.use("/api/personagens", personagensRoutes);
+
 app.listen(PORT, () => {
     console.log(`Servidor iniciado em http://localhost:${PORT}`);
-});
-
-app.get("/api/akumas/:nome", (req, res) => {
-
-    const nome = req.params.nome;
-    const sql = "SELECT * FROM akumas WHERE nome = ?";
-
-    db.query(sql, [nome], (err, resultado) => {
-        if (err) {
-            return res.status(500).json(err);
-        }
-        res.json(resultado);
-    });
-
 });

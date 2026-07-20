@@ -1,21 +1,22 @@
-const barraDePesquisa = document.querySelector(".barraPesquisa");
-const botaoDePesquisar = document.querySelector(".botaoPesquisar");
-const resultadoDaPesquisa = document.querySelector(".resultadoPesquisa");
+const barrasPesquisa = document.querySelectorAll(".barraPesquisa"); //recolhe todas as classes "barraPesquisa"
+const botoesPesquisar = document.querySelectorAll(".botaoPesquisar"); //recolhe todas as classes "botaoPesquisar"
+const resultadosPesquisa = document.querySelectorAll(".resultadoPesquisa"); //recolhe todas as classes "resultadoPesquisa"
 
-botaoDePesquisar.addEventListener("click", mostrarPesquisa);
+//AKUMAS
+botoesPesquisar[0].addEventListener("click", pesquisarAkuma);  //o primeiro elemento com class = "botaoPesquisar", no caso, o botão dos akumas
 
-async function mostrarPesquisa() {
+async function pesquisarAkuma(){
 
-    const texto = barraDePesquisa.value.trim().toLowerCase();
+    const texto = barrasPesquisa[0].value.trim().toLowerCase();
     const resposta = await fetch(`/api/akumas/${texto}`);
     const dados = await resposta.json();
-    if(dados.length === 0){
-        resultadoDaPesquisa.innerHTML = "<p>Akuma não encontrada.</p>";
+    if (dados.length === 0) {
+        resultadosPesquisa[0].innerHTML = "<p>Akuma não encontrada.</p>";
         return;
     }
 
     const fruta = dados[0];
-    resultadoDaPesquisa.innerHTML = `
+    resultadosPesquisa[0].innerHTML = `
         <div class="akumaResultado">
             <div class="infoAkuma">
                 <h3>${fruta.nome}</h3>
@@ -27,5 +28,40 @@ async function mostrarPesquisa() {
             <div class="imgs">
                 <img src="imagens/${fruta.imagem}" alt="${fruta.nome}">
             </div>
-        </div>`;
+        </div>
+    `;
+    
+}
+
+//PERSONAGENS
+botoesPesquisar[1].addEventListener("click", pesquisarPersonagem); //o segundo elemento com class = "botaoPesquisar", no caso, o botão dos personagens
+
+async function pesquisarPersonagem(){
+
+    const texto = barrasPesquisa[1].value.trim().toLowerCase();
+    const resposta = await fetch(`/api/personagens/${texto}`);
+    const dados = await resposta.json();
+    if (dados.length === 0){
+        resultadosPesquisa[1].innerHTML = "<p>Personagem não encontrada.</p>";
+        return;
+    }
+
+    const personagem = dados[0];
+    resultadosPesquisa[1].innerHTML = `
+        <div class="personagemResultado">
+            <div class="infoPersonagem">
+                <h3>${personagem.nome}</h3>
+                <p><strong>Estado:</strong> ${personagem.estado}</p>
+                <p><strong>Tripulação:</strong> ${personagem.tripulacao}</p>
+                <p><strong>Recompensa:</strong> ${Number(personagem.recompensa).toLocaleString()} Berries</p>
+                <p>${personagem.descricao}</p>
+            </div>
+
+            <div class="imgs">
+                <img src="imagens/${personagem.imagem}" alt="${personagem.nome}">
+            </div>
+        </div>
+    `;
+
+    
 }

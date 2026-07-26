@@ -65,3 +65,38 @@ async function pesquisarPersonagem(){
 
     
 }
+
+//TRIPULACOES
+botoesPesquisar[2].addEventListener("click", pesquisarTripulacao);
+
+async function pesquisarTripulacao(){
+
+    const texto = barrasPesquisa[2].value.trim().toLowerCase();
+    const resposta = await fetch(`/api/tripulacoes/${texto}`);
+    const dados = await resposta.json();
+
+    if(dados.length === 0){
+        resultadosPesquisa[2].innerHTML = "<p>Tripulação não encontrada.</p>";
+        return;
+    }
+
+    const tripulacao = dados[0];
+
+    resultadosPesquisa[2].innerHTML = `
+        <div class="tripulacaoResultado">
+            <div class="infoTripulacao">
+                <h3>${tripulacao.nome}</h3>
+                <p><strong>Capitão:</strong> ${tripulacao.capitao}</p>
+                <p><strong>Navio:</strong> ${tripulacao.navio}</p>
+                <p><strong>Recompensa Total:</strong> ${Number(tripulacao.recompensa_total).toLocaleString()} Berries</p>
+                <p><strong>Quantidade de membros:</strong> ${tripulacao.quantidade_membros}</p>
+                <p><strong>Status:</strong> ${tripulacao.estado}</p>
+                <p>${tripulacao.descricao}</p>
+            </div>
+
+            <div class="imgs">
+                <img src="imagens/${tripulacao.imagem}" alt="${tripulacao.nome}">
+            </div>
+        </div>
+    `;
+}

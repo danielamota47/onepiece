@@ -88,10 +88,11 @@ async function pesquisarTripulacao(){
                 <h3>${tripulacao.nome}</h3>
                 <p><strong>Capitão:</strong> ${tripulacao.capitao}</p>
                 <p><strong>Navio:</strong> ${tripulacao.navio}</p>
+                <p><strong>Mar:</strong> ${tripulacao.mar}</p>
                 <p><strong>Recompensa Total:</strong> ${Number(tripulacao.recompensa_total).toLocaleString()} Berries</p>
-                <p><strong>Quantidade de membros:</strong> ${tripulacao.quantidade_membros}</p>
-                <p><strong>Status:</strong> ${tripulacao.estado}</p>
-                <p>${tripulacao.descricao}</p>
+                <p><strong>Quantidade de Membros:</strong> ${tripulacao.quantidade_membros}</p>
+                <p><strong>Estado:</strong> ${tripulacao.estado}</p>
+                <p><strong>Descrição:</strong> ${tripulacao.descricao}</p>
             </div>
 
             <div class="imgs">

@@ -5,7 +5,7 @@ module.exports = (db) => {
     const router = express.Router();
     router.get("/:nome", (req, res) => {
         const nome = req.params.nome;
-        const sql = `SELECT * FROM tripulacoes WHERE LOWER(nome) LIKE ?`;
+        const sql = `SELECT * FROM characters WHERE LOWER(name) LIKE ?`;
 
         db.query(sql, [`%${nome.toLowerCase()}%`], (err, resultado) => {
             if (err) {

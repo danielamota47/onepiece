@@ -25,13 +25,13 @@ db.connect((err) => {
 
 //importar as rotas
 const akumasRoutes = require("./routes/akumas")(db);
-const personagensRoutes = require("./routes/personagens")(db);
-const tripulacoesRoutes = require("./routes/tripulacoes")(db);
+const personagensRoutes = require("./routes/characters")(db);
+const tripulacoesRoutes = require("./routes/crews")(db);
 
 //usar as rotas
 app.use("/api/akumas", akumasRoutes);
-app.use("/api/personagens", personagensRoutes);
-app.use("/api/tripulacoes",tripulacoesRoutes);
+app.use("/api/characters", personagensRoutes);
+app.use("/api/crews",tripulacoesRoutes);
 
 app.listen(PORT, () => {
     console.log(`Servidor iniciado em http://localhost:${PORT}`);

@@ -1,17 +1,17 @@
-const barrasPesquisa = document.querySelectorAll(".barraPesquisa"); //recolhe todas as classes "barraPesquisa"
-const botoesPesquisar = document.querySelectorAll(".botaoPesquisar"); //recolhe todas as classes "botaoPesquisar"
-const resultadosPesquisa = document.querySelectorAll(".resultadoPesquisa"); //recolhe todas as classes "resultadoPesquisa"
+const barrasPesquisa = document.querySelectorAll(".barraPesquisa");
+const botoesPesquisar = document.querySelectorAll(".botaoPesquisar");
+const resultadosPesquisa = document.querySelectorAll(".resultadoPesquisa");
 
 //AKUMAS
-botoesPesquisar[0].addEventListener("click", pesquisarAkuma);  //o primeiro elemento com class = "botaoPesquisar", no caso, o botão dos akumas
+
+botoesPesquisar[0].addEventListener("click", pesquisarAkuma);
 
 async function pesquisarAkuma(){
-
     const texto = barrasPesquisa[0].value.trim().toLowerCase();
     const resposta = await fetch(`/api/akumas/${texto}`);
     const dados = await resposta.json();
-    if (dados.length === 0) {
-        resultadosPesquisa[0].innerHTML = "<p>Akuma não encontrada.</p>";
+    if (dados.length === 0){
+        resultadosPesquisa[0].innerHTML = "<p>Akuma not found.</p>";
         return;
     }
 
@@ -19,30 +19,30 @@ async function pesquisarAkuma(){
     resultadosPesquisa[0].innerHTML = `
         <div class="akumaResultado">
             <div class="infoAkuma">
-                <h3>${fruta.nome}</h3>
-                <p><strong>Tipo:</strong> ${fruta.tipo}</p>
-                <p><strong>Utilizador:</strong> ${fruta.utilizador}</p>
-                <p>${fruta.descricao}</p>
+                <h3>${fruta.name}</h3>
+                <p><strong>Tipo:</strong> ${fruta.type}</p>
+                <p><strong>Utilizador:</strong> ${fruta.user}</p>
+                <p>${fruta.description}</p>
             </div>
 
             <div class="imgs">
-                <img src="imagens/${fruta.imagem}" alt="${fruta.nome}">
+                <img src="imagens/${fruta.image}" alt="${fruta.name}">
             </div>
         </div>
     `;
-    
 }
 
 //PERSONAGENS
-botoesPesquisar[1].addEventListener("click", pesquisarPersonagem); //o segundo elemento com class = "botaoPesquisar", no caso, o botão dos personagens
+
+botoesPesquisar[1].addEventListener("click", pesquisarPersonagem);
 
 async function pesquisarPersonagem(){
-
     const texto = barrasPesquisa[1].value.trim().toLowerCase();
-    const resposta = await fetch(`/api/personagens/${texto}`);
+    const resposta = await fetch(`/api/characters/${texto}`);
     const dados = await resposta.json();
+
     if (dados.length === 0){
-        resultadosPesquisa[1].innerHTML = "<p>Personagem não encontrada.</p>";
+        resultadosPesquisa[1].innerHTML = "<p>Character not found.</p>";
         return;
     }
 
@@ -50,53 +50,54 @@ async function pesquisarPersonagem(){
     resultadosPesquisa[1].innerHTML = `
         <div class="personagemResultado">
             <div class="infoPersonagem">
-                <h3>${personagem.nome}</h3>
-                <p><strong>Estado:</strong> ${personagem.estado}</p>
-                <p><strong>Tripulação:</strong> ${personagem.tripulacao}</p>
-                <p><strong>Recompensa:</strong> ${Number(personagem.recompensa).toLocaleString()} Berries</p>
-                <p>${personagem.descricao}</p>
+                <h3>${personagem.name}</h3>
+                <p><strong>Estado:</strong> ${personagem.status}</p>
+                <p><strong>Tripulação:</strong> ${personagem.crew}</p>
+                <p><strong>Recompensa:</strong> ${
+                    personagem.bounty
+                        ? Number(personagem.bounty).toLocaleString()
+                        : "Unknown"
+                } Berries</p>
+                <p>${personagem.description}</p>
             </div>
 
             <div class="imgs">
-                <img src="imagens/${personagem.imagem}" alt="${personagem.nome}">
+                <img src="imagens/${personagem.image}" alt="${personagem.name}">
             </div>
         </div>
     `;
-
-    
 }
 
-//TRIPULACOES
+//TRIPULAÇÕES
+
 botoesPesquisar[2].addEventListener("click", pesquisarTripulacao);
 
 async function pesquisarTripulacao(){
-
     const texto = barrasPesquisa[2].value.trim().toLowerCase();
-    const resposta = await fetch(`/api/tripulacoes/${texto}`);
+    const resposta = await fetch(`/api/crews/${texto}`);
     const dados = await resposta.json();
 
-    if(dados.length === 0){
-        resultadosPesquisa[2].innerHTML = "<p>Tripulação não encontrada.</p>";
+    if (dados.length === 0){
+        resultadosPesquisa[2].innerHTML = "<p>Crew not found.</p>";
         return;
     }
 
     const tripulacao = dados[0];
-
     resultadosPesquisa[2].innerHTML = `
         <div class="tripulacaoResultado">
             <div class="infoTripulacao">
-                <h3>${tripulacao.nome}</h3>
-                <p><strong>Capitão:</strong> ${tripulacao.capitao}</p>
-                <p><strong>Navio:</strong> ${tripulacao.navio}</p>
-                <p><strong>Mar:</strong> ${tripulacao.mar}</p>
-                <p><strong>Recompensa Total:</strong> ${Number(tripulacao.recompensa_total).toLocaleString()} Berries</p>
-                <p><strong>Quantidade de Membros:</strong> ${tripulacao.quantidade_membros}</p>
-                <p><strong>Estado:</strong> ${tripulacao.estado}</p>
-                <p><strong>Descrição:</strong> ${tripulacao.descricao}</p>
+                <h3>${tripulacao.name}</h3>
+                <p><strong>Capitão:</strong> ${tripulacao.captain}</p>
+                <p><strong>Navio:</strong> ${tripulacao.ship}</p>
+                <p><strong>Mar:</strong> ${tripulacao.sea}</p>
+                <p><strong>Recompensa Total:</strong> ${Number(tripulacao.total_bounty).toLocaleString()} Berries</p>
+                <p><strong>Quantidade de Membros:</strong> ${tripulacao.member_count}</p>
+                <p><strong>Estado:</strong> ${tripulacao.status}</p>
+                <p><strong>Descrição:</strong> ${tripulacao.description}</p>
             </div>
 
             <div class="imgs">
-                <img src="imagens/${tripulacao.imagem}" alt="${tripulacao.nome}">
+                <img src="imagens/${tripulacao.image}" alt="${tripulacao.name}">
             </div>
         </div>
     `;
